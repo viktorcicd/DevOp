@@ -20,7 +20,7 @@ pipeline {
                     sh 'docker build -t victorcicd/k8sphp:v5 .'
                     sh "echo $PASS | docker login -u $myUser --password-stdin"
                     sh 'docker push victorcicd/k8sphp:v5'
-                }
+                
             }
         }
         stage('Build deploy over SSH') {
@@ -29,7 +29,7 @@ pipeline {
                // def dockerC = 'docker run
                // sshagent(['ec2-server-key']) {
                 //    sh "ssh -o StrictHostKeyChecking=no ubuntu@10.0.10.149"               
-                }
+                
             }
         }
     }
