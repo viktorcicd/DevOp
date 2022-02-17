@@ -25,8 +25,8 @@ pipeline {
         stage('Build deploy over SSH') {
             steps {
                // def dockerC = 'docker run
-                sshagent(['ec2-server-key']) {
-                    sh "ssh -o StrictHostKeyChecking=no ubuntu@10.0.10.149"               
+               // sshagent(['ec2-server-key']) {
+                //    sh "ssh -o StrictHostKeyChecking=no ubuntu@10.0.10.149"               
                 }
             }
         }
