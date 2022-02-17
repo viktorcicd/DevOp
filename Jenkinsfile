@@ -15,8 +15,11 @@ pipeline {
      
         stage('Build image') {
             steps {               
-                sh "./mvnw spring-boot:build-image"
-               
+                echo "building image"
+                withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'myPass', usernameVariable: 'myUser')])
+                    sh 'docker build -t victorcicd/k8sphp:v5 .'
+                    sh "echo $PASS | docker login -u $myUser --password-stdin"
+                    sh 'docker push victorcicd/k8sphp:v5'
             }
         }
         stage('Build deploy over SSH') {
